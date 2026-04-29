@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💘 Happy 20th Birthday</title>
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- canvas-confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --rose-dark: #b33951;
+            --rose: #e8476b;
+            --rose-light: #f8a4b6;
+            --champagne: #faf0e6;
+            --gold: #d4a843;
+            --gold-light: #f0d78c;
+            --white: #fff9f9;
+            --dark: #3d1c24;
+            --crimson: #9b2d3d;
+            --deep-rose: #b76e79;
+            --bg-gradient-1: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 25%, #f48fb1 50%, #f06292 75%, #e91e63 100%);
+            --bg-gradient-2: linear-gradient(160deg, #faf0e6 0%, #fdf2e9 20%, #fff5f0 40%, #fef9f4 60%, #faf3e8 80%, #f5e6d3 100%);
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-soft: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-rose: 0 4px 24px rgba(183,110,121,0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            background: #1a0a10;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* ========== FLOATING HEARTS (ALL SCREENS) ========== */
+        #floating-hearts {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+        .float-heart {
+            position: absolute;
+            color: var(--rose);
+            opacity: 0.25;
+            animation: floatHeartAnim 7s linear infinite;
+            font-size: 1.5rem;
+        }
+        @keyframes floatHeartAnim {
+            0%{ transform: translateY(110vh) rotate(0deg); opacity:0; }
+            10%{ opacity:0.35; }
+            90%{ opacity:0.1; }
+            100%{ transform: translateY(-10vh) rotate(360deg); opacity:0; }
+        }
+
+        /* ========== SCREEN 1 (Unwrap) – existing animations kept ========== */
+        .screen-1 {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-gradient-1);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth), visibility 0.9s var(--transition-smooth);
+            overflow: hidden;
+        }
+        .screen-1.hidden {
+            opacity: 0;
+            transform: scale(1.15) rotateY(18deg);
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth), visibility 0s 0.9s;
+        }
+        @keyframes gradientShift {
+            0%,100% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+        .ecg-container-screen1 {
+            position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
+            z-index: 2; opacity: 0.55; pointer-events: none;
+        }
+        .ecg-line { width: 220px; height: 60px; }
+        .ecg-path {
+            stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round;
+            animation: ecgPulse 1.6s ease-in-out infinite;
+            filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
+        }
+        @keyframes ecgPulse {
+            0%,100%{ stroke-dasharray:600; stroke-dashoffset:0; }
+            25%{ stroke-dasharray:600; stroke-dashoffset:-50; }
+            50%{ stroke-dasharray:600; stroke-dashoffset:-100; }
+            75%{ stroke-dasharray:600; stroke-dashoffset:-50; }
+        }
+        .screen-1-content { position: relative; z-index: 3; text-align: center; padding: 20px; max-width: 600px; }
+        .medical-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.4); padding: 8px 20px;
+            border-radius: 40px; margin-bottom: 20px; color: #fff;
+            font-family: 'Dancing Script', cursive; font-size: 1.15rem;
+            animation: fadeInDown 1s ease forwards; opacity:0; animation-delay:0.2s;
+        }
+        @keyframes fadeInDown {
+            from { opacity:0; transform:translateY(-25px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        .main-title {
+            font-family: 'Dancing Script', cursive; font-size: clamp(2.2rem,5vw,3.6rem);
+            color:#fff; text-shadow:0 2px 12px rgba(180,60,80,0.5);
+            animation: fadeInDown 1s ease forwards; opacity:0; animation-delay:0.4s;
+        }
+        .subtitle-dates {
+            font-family: 'Playfair Display', serif; font-size: clamp(0.85rem,2vw,1.05rem);
+            color:#fff; opacity:0.9; letter-spacing:1.5px; margin-bottom:6px;
+            animation: fadeInDown 1s ease forwards; opacity:0; animation-delay:0.55s;
+        }
+        .subtitle-doctor {
+            font-family: 'Dancing Script', cursive; font-size: clamp(1.1rem,2.5vw,1.5rem);
+            color:#ffd700; text-shadow:0 0 20px rgba(255,215,0,0.5); margin-bottom:30px;
+            animation: fadeInDown 1s ease forwards; opacity:0; animation-delay:0.7s;
+        }
+        .heart-button-wrapper { animation: fadeInUp 1s ease forwards; opacity:0; animation-delay:0.9s; position:relative; display:inline-block; }
+        @keyframes fadeInUp {
+            from { opacity:0; transform:translateY(30px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        .heart-button {
+            position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+            background:linear-gradient(135deg,#e91e63,#c2185b,#ad1457); color:#fff;
+            border:none; padding:16px 38px; font-size:1.2rem; font-family:'Dancing Script',cursive;
+            font-weight:700; letter-spacing:1px; cursor:pointer; border-radius:50px;
+            box-shadow:0 0 30px rgba(232,71,107,0.6); transition:all 0.35s; z-index:5;
+        }
+        .heart-button:hover { transform:scale(1.08); }
+        .heart-button:active { transform:scale(0.94); }
+        .glow-ring {
+            position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:130px; height:130px;
+            border-radius:50%; border:2px solid rgba(255,255,255,0.35); animation:glowPulse 2.2s infinite;
+            pointer-events:none;
+        }
+        @keyframes glowPulse {
+            0%,100%{ width:120px; height:120px; opacity:0.5; }
+            50%{ width:170px; height:170px; opacity:0; }
+        }
+
+        /* ========== COMMON STYLES FOR PAGES 2-6 ========== */
+        .screen {
+            position: fixed; top:0; left:0; width:100%; height:100vh; z-index:5;
+            overflow-y:auto; overflow-x:hidden;
+            background: var(--bg-gradient-2);
+            opacity:0; visibility:hidden;
+            transition: opacity 0.9s ease, visibility 0s 0.9s;
+            scroll-behavior: smooth;
+        }
+        .screen.visible {
+            opacity:1; visibility:visible;
+            transition: opacity 0.9s ease, visibility 0s 0s;
+        }
+        .screen-inner { max-width:900px; margin:0 auto; padding:40px 24px 50px; }
+        .screen-heading {
+            text-align:center; font-family:'Dancing Script',cursive;
+            font-size:clamp(2rem,4.5vw,3rem); color:#5c1a2a;
+            margin-bottom:4px; text-shadow:0 1px 4px rgba(200,100,120,0.2);
+        }
+        .medical-divider {
+            display:flex; align-items:center; justify-content:center; gap:14px;
+            margin:10px 0 28px; color:#b33951; font-size:1.3rem;
+        }
+        .medical-divider .divider-line { width:50px; height:1.5px; background:#d4a843; border-radius:1px; }
+        .bottom-glow-line {
+            text-align:center; font-family:'Dancing Script',cursive; font-size:clamp(1.3rem,3vw,1.8rem);
+            color:#b33951; text-shadow:0 0 18px rgba(179,57,81,0.5); animation:glowText 2.5s infinite; padding-bottom:20px;
+        }
+        @keyframes glowText {
+            0%,100%{ text-shadow:0 0 18px rgba(179,57,81,0.5); }
+            50%{ text-shadow:0 0 35px rgba(255,80,120,0.8); }
+        }
+
+        /* ========== SCREEN 2: CAKE CUTTING – enhanced animations ========== */
+        .cake-container {
+            max-width: 500px; margin: 0 auto; text-align: center; position: relative; height: 380px;
+        }
+        .cake {
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 300px; height: 220px;
+        }
+        .cake-base {
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 270px; height: 85px;
+            background: linear-gradient(to top, #f5c6d0, #fddde6);
+            border-radius: 25px 25px 12px 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1), inset 0 -10px 10px rgba(0,0,0,0.05);
+            border-bottom: 4px solid #d48c9c;
+        }
+        .cake-top {
+            position: absolute; bottom: 85px; left: 50%; transform: translateX(-50%);
+            width: 210px; height: 65px;
+            background: linear-gradient(to top, #fce4ec, #fff0f3);
+            border-radius: 35px 35px 12px 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-bottom: 3px solid #eebbcb;
+        }
+        .cake-frosting {
+            position: absolute; bottom: 150px; left: 50%; transform: translateX(-50%);
+            width: 150px; height: 45px;
+            background: radial-gradient(circle at 30% 30%, #fff, #fde2e7);
+            border-radius: 50%;
+            box-shadow: 0 -4px 10px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .cake-frosting::after {
+            content: "Happy 20th!";
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            font-family: 'Dancing Script', cursive; font-size: 1.2rem; color: var(--crimson); white-space: nowrap;
+        }
+        .candles {
+            position: absolute; bottom: 195px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 30px;
+        }
+        .candle {
+            width: 14px; height: 40px;
+            background: linear-gradient(to right, #ffb6c1, #ff5869);
+            border-radius: 6px; position: relative;
+        }
+        .flame {
+            position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+            width: 16px; height: 22px;
+            background: radial-gradient(circle, #ffd966, #ff8c00);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.12s infinite alternate;
+            box-shadow: 0 0 14px #ffb703;
+        }
+        .flame.out { display: none; }
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.2) rotate(2deg); opacity: 1; }
+        }
+        .knife {
+            position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+            font-size: 3.5rem; color: #a0a0a0; cursor: pointer;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3)); z-index: 10;
+            animation: floatKnife 2.5s infinite ease-in-out;
+        }
+        @keyframes floatKnife {
+            0%,100%{ top:-60px; }
+            50%{ top:-70px; }
+        }
+        .knife.cut {
+            animation: sliceKnife 2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+            pointer-events: none;
+        }
+        @keyframes sliceKnife {
+            0%   { top: -60px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+            20%  { top: 30px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+            35%  { top: 30px; left: 58%; transform: translateX(-50%) rotate(-10deg); }
+            55%  { top: 30px; left: 72%; transform: translateX(-50%) rotate(-25deg); }
+            75%  { top: -10px; left: 85%; transform: translateX(-50%) rotate(-20deg); }
+            100% { top: -40px; left: 90%; transform: translateX(-50%) rotate(-15deg); }
+        }
+        .knife.done {
+            animation: none; top: -40px; left: 90%; transform: translateX(-50%) rotate(-15deg);
+        }
+        .cake-message {
+            font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 240px; color: var(--crimson);
+        }
+        .slice-piece {
+            position: absolute; bottom: 40px; left: 68%; transform: translateX(-50%) scale(0);
+            width: 0; height: 0; border-left: 25px solid transparent; border-right: 25px solid transparent;
+            border-bottom: 45px solid #ffe0e6; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .slice-piece.show { transform: translateX(0) scale(1); }
+        .cake-cut-line {
+            position: absolute; bottom: 0; left: 70%; transform: translateX(-50%);
+            width: 4px; height: 85px; background: rgba(180,60,80,0.6); border-radius: 2px;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .cake-cut-line.visible { opacity: 1; }
+
+        /* Cake sprinkles & sparkles when page appears */
+        .sprinkle {
+            position: absolute; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--gold-light); opacity: 0;
+            animation: sprinkleFall 3s ease-in forwards;
+            pointer-events: none;
+        }
+        @keyframes sprinkleFall {
+            0%{ transform: translateY(-30px) rotate(0deg); opacity:0; }
+            50%{ opacity:1; }
+            100%{ transform: translateY(100px) rotate(180deg); opacity:0; }
+        }
+        .sparkle-star {
+            position: absolute; color: #ffd700; font-size: 1.2rem; opacity:0;
+            animation: sparklePop 1.5s ease-in-out forwards;
+            pointer-events: none;
+        }
+        @keyframes sparklePop {
+            0%{ transform: scale(0); opacity:0; }
+            50%{ transform: scale(1.8); opacity:1; }
+            100%{ transform: scale(0); opacity:0; }
+        }
+
+        /* ========== SCREEN 3: PHOTO GALLERY – floating photos ========== */
+        .gallery-grid {
+            display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; margin-bottom:32px;
+        }
+        @media (min-width:600px){ .gallery-grid{ grid-template-columns:repeat(3,1fr); } }
+        @media (min-width:900px){ .gallery-grid{ grid-template-columns:repeat(4,1fr); } }
+        .gallery-item {
+            border-radius:16px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.1);
+            transition:all 0.4s; cursor:pointer; aspect-ratio:1/1; background:#fff; border:3px solid #fff;
+            animation: gentleFloat 6s ease-in-out infinite;
+        }
+        .gallery-item:nth-child(even) { animation-delay: 1s; }
+        .gallery-item:nth-child(3n) { animation-delay: 2s; }
+        @keyframes gentleFloat {
+            0%,100%{ transform: translateY(0); }
+            50%{ transform: translateY(-8px); }
+        }
+        .gallery-item:hover {
+            transform:translateY(-6px) scale(1.03);
+            animation: none;
+        }
+        .gallery-item img { width:100%; height:100%; object-fit:cover; display:block; }
+        .gallery-item.polaroid {
+            aspect-ratio:4/5; border-radius:8px; border:8px solid #fff; border-bottom-width:32px;
+        }
+        .gallery-item.video-placeholder {
+            background:linear-gradient(135deg,#3d1c24,#5c1a2a); display:flex; align-items:center; justify-content:center;
+            position:relative; border:3px solid #f8bbd0;
+        }
+        .gallery-item.video-placeholder .play-overlay {
+            position:absolute; width:50px; height:50px; background:rgba(255,255,255,0.9);
+            border-radius:50%; display:flex; align-items:center; justify-content:center;
+            font-size:1.3rem; color:#e91e63; z-index:3; transition:0.3s;
+            box-shadow:0 0 25px rgba(233,30,99,0.5); pointer-events:none;
+            animation: playPulse 2s infinite;
+        }
+        @keyframes playPulse {
+            0%,100%{ box-shadow:0 0 25px rgba(233,30,99,0.5); }
+            50%{ box-shadow:0 0 45px rgba(233,30,99,0.9); }
+        }
+        .gallery-item.video-placeholder .video-poster { width:100%; height:100%; object-fit:cover; opacity:0.55; }
+
+        /* Love letter */
+        .love-letter {
+            background:#fff; border-radius:20px; padding:32px 26px; box-shadow:0 8px 32px rgba(0,0,0,0.1);
+            border-left:5px solid #e91e63; position:relative; margin-bottom:24px; max-width:650px; margin-inline:auto;
+            animation: letterBreath 4s ease-in-out infinite;
+        }
+        @keyframes letterBreath {
+            0%,100%{ border-left-color: #e91e63; }
+            50%{ border-left-color: #ff85a1; box-shadow: 0 0 25px rgba(255,105,180,0.3); }
+        }
+        .love-letter .letter-text { font-family:'Playfair Display',serif; font-size:clamp(0.95rem,2vw,1.1rem); line-height:1.8; color:#4a2028; }
+        .love-letter .letter-signature { font-family:'Dancing Script',cursive; font-size:1.6rem; color:#b33951; text-align:right; margin-top:16px; }
+
+        /* ========== SCREEN 5: HEARTBEATS – additional ECG drawing ========== */
+        .heartbeat-section {
+            background: #fff; border-radius: 2rem; padding: 2rem; box-shadow: var(--shadow-soft);
+            max-width: 500px; margin: 1rem auto; border: 2px solid var(--rose-light);
+            animation: softBorderPulse 2s infinite;
+        }
+        @keyframes softBorderPulse {
+            0%,100%{ border-color: var(--rose-light); }
+            50%{ border-color: #ff85a1; }
+        }
+        .heartbeat-icon {
+            font-size: 4rem; color: var(--crimson);
+            animation: beatPulse 0.83s ease-in-out infinite;
+        }
+        @keyframes beatPulse {
+            0%,100%{ transform: scale(1); }
+            15%{ transform: scale(1.3); }
+            30%{ transform: scale(1); }
+        }
+        .heartbeat-counter {
+            font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--crimson);
+            font-weight: 700; margin: 1rem 0;
+            animation: countGlow 1.2s ease-in-out infinite;
+        }
+        @keyframes countGlow {
+            0%,100%{ text-shadow: 0 0 5px rgba(155,45,61,0.3); }
+            50%{ text-shadow: 0 0 20px rgba(255,0,100,0.7); }
+        }
+        /* ECG drawing animation for screen5 */
+        .ecg-draw-line {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawECG 2s linear forwards;
+        }
+        @keyframes drawECG {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* ========== SCREEN 6: PRESCRIPTION – slide in & glow ========== */
+        .rx-paper {
+            background: #fefcf9; padding: 2rem; border-radius: 0.5rem;
+            box-shadow: var(--shadow-soft); font-family: 'Montserrat', sans-serif;
+            text-align: left; max-width: 400px; margin: 1rem auto;
+            border-top: 8px solid var(--crimson);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .screen.visible .rx-paper {
+            opacity: 1; transform: translateY(0);
+        }
+        .rx-paper .rx-header {
+            display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;
+        }
+        .rx-paper .rx-symbol {
+            font-size: 2.5rem; font-family: 'Playfair Display', serif; color: var(--crimson);
+            animation: rxGlow 2s infinite;
+        }
+        @keyframes rxGlow {
+            0%,100%{ text-shadow: 0 0 5px rgba(155,45,61,0.5); }
+            50%{ text-shadow: 0 0 30px rgba(255,0,100,0.9); }
+        }
+
+        /* ========== MUSIC TOGGLE – cute heart-beat animation ========== */
+        .audio-toggle {
+            position: fixed; bottom: 20px; right: 20px; z-index: 150;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.7); backdrop-filter: blur(6px);
+            border: 1.5px solid #f8bbd0; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; font-size: 1rem;
+            color: #e91e63; transition: all 0.3s ease;
+        }
+        .audio-toggle i.fa-heart {
+            transition: transform 0.3s;
+        }
+        .audio-toggle .beating {
+            animation: heartBeat 1s infinite;
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.2); }
+            60% { transform: scale(1); }
+        }
+        .audio-toggle.muted i.fa-heart {
+            color: #999;
+            animation: none;
+        }
+        .audio-toggle.muted i.fa-music {
+            color: #999;
+        }
+        .audio-toggle i.fa-volume-xmark {
+            color: #999;
+        }
+
+        /* ========== HEART NAVIGATION BUTTON ========== */
+        .svg-clip-container { position: absolute; width: 0; height: 0; }
+        .heart-nav-btn {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            z-index: 100; width: 68px; height: 68px;
+            background: radial-gradient(circle at 30% 30%, #c4455a, var(--crimson));
+            border: 3px solid rgba(255,255,255,0.4);
+            box-shadow: 0 4px 24px rgba(183,110,121,0.3);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease; animation: heartBounce 1.8s ease-in-out infinite;
+            font-size: 1.8rem; color: #fff;
+            clip-path: url(#heartShape); -webkit-clip-path: url(#heartShape);
+            opacity: 0; visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.4s ease, visibility 0s 0.4s, transform 0.3s ease;
+        }
+        .heart-nav-btn.visible {
+            opacity:1; visibility:visible; pointer-events:auto;
+            transition: opacity 0.4s ease, visibility 0s 0s;
+        }
+        .heart-nav-btn:hover { transform: translateX(-50%) scale(1.08); }
+        @keyframes heartBounce {
+            0%,100%{ bottom:30px; }
+            50%{ bottom:42px; }
+        }
+        .heart-nav-btn i { filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2)); position: relative; z-index: 2; }
+
+        /* Back button */
+        .back-button {
+            position: fixed; top: 18px; right: 18px; z-index: 20;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);
+            border: 2px solid #f8bbd0; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; font-size: 1.1rem;
+            color: #e91e63; box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; opacity:0; visibility:hidden;
+            pointer-events: none;
+        }
+        .back-button.visible {
+            opacity:1; visibility:visible; pointer-events:auto;
+            transition: opacity 0.5s ease 0.6s, visibility 0s 0s;
+        }
+        .lightbox-overlay { /* unchanged */ }
+
+        @media (max-width:480px) {
+            .heart-nav-btn { width:56px; height:56px; font-size:1.5rem; }
+            .gallery-grid { grid-template-columns: repeat(2,1fr); gap:10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="svg-clip-container">
+        <svg width="0" height="0">
+            <defs>
+                <clipPath id="heartShape" clipPathUnits="objectBoundingBox">
+                    <path d="M0.5,0.15 C0.72,0.02 0.98,0.12 0.98,0.35 C0.98,0.62 0.5,0.95 0.5,0.95 C0.5,0.95 0.02,0.62 0.02,0.35 C0.02,0.12 0.28,0.02 0.5,0.15 Z" />
+                </clipPath>
+            </defs>
+        </svg>
+    </div>
+
+    <div id="floating-hearts"></div>
+
+    <!-- SCREEN 1 -->
+    <div class="screen-1" id="screen1">
+        <div class="ecg-container-screen1"><svg class="ecg-line" viewBox="0 0 300 60"><polyline class="ecg-path" points="0,30 20,30 30,30 35,8 40,52 45,30 55,30 65,30 70,12 75,48 80,30 300,30" /></svg></div>
+        <div class="screen-1-content">
+            <div class="medical-badge"><i class="fa-solid fa-stethoscope"></i> My Doctor Madam  <i class="fa-solid fa-heart-pulse"></i></div>
+            <h1 class="main-title">Happy 20th Birthday,<br>Love of My Life Dr.Sugarika Sapkota Pokharel❤️</h1>
+            <p class="subtitle-dates"><i class="fa-solid fa-cake-candles"></i> Born: 2063/01/18 B.S. &nbsp;•&nbsp; <i class="fa-solid fa-gift"></i> Today: 2083/01/18 B.S.</p>
+            <p class="subtitle-doctor"><span>🩺</span> My Brilliant Future Doctor and My Wife<span>♡</span></p>
+            <div class="heart-button-wrapper"><div class="glow-ring"></div><button class="heart-button" id="heartButton"><span>💝</span> Open Your Gift <span>💝</span></button></div>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: CAKE CUTTING CEREMONY -->
+    <div class="screen" id="screen2-cake">
+        <div class="screen-inner">
+            <h2 class="screen-heading">🎂 Cut Your Birthday Cake, My Love</h2>
+            <div class="medical-divider"><span class="divider-line"></span><i class="fa-solid fa-cake-candles"></i><span class="divider-line"></span></div>
+            <div style="text-align:center; margin-bottom: 0px;">
+                <img src="IMG_20260118_210254_297.jpg" alt="My Love" style="max-width: 250px; width: 80%; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 4px solid pink;">
+            </div>
+            <div class="cake-container" id="cakeContainer" style="margin-top: -25px;">
+                <div class="cake" id="cake">
+                    <div class="cake-frosting"></div>
+                    <div class="candles" id="candles">
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                    </div>
+                    <div class="cake-top"></div>
+                    <div class="cake-base"></div>
+                    <div class="slice-piece" id="slicePiece"></div>
+                    <div class="cake-cut-line" id="cutLine"></div>
+                </div>
+                <div class="knife" id="knife">🔪</div>
+                <p class="cake-message" id="cakeMessage">Tap the knife to cut the cake!</p>
+                <p class="cut-instruction" style="font-family:'Montserrat',sans-serif;color:var(--dark);margin-top:15px;font-style:italic;"><i class="fa-solid fa-stethoscope"></i> Make a wish Sanu and see the magic...</p>
+            </div>
+            <br><br><br>
+            <div style="text-align:center; margin-bottom: 20px;">
+                <img src="IMG_20260118_210304_631.jpg" alt="My Love" style="max-width: 250px; width: 80%; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 4px solid pink;">
+            </div>
+            <p class="bottom-glow-line" style="margin-top:2rem;">✨ Wish u a very very happy birthday My Love ✨</p>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: PHOTOS -->
+    <div class="screen" id="screen3-photos">
+        <div class="screen-inner">
+            <div class="ecg-container-screen2"><svg class="ecg-line" viewBox="0 0 300 60"><polyline class="ecg-path" points="0,30 20,30 30,30 35,8 40,52 45,30 55,30 65,30 70,12 75,48 80,30 300,30" /></svg></div>
+            <h2 class="screen-heading">📸 Our Photo Memories</h2>
+            <div class="medical-divider"><span class="divider-line"></span><i class="fa-solid fa-camera-retro"></i><span class="divider-line"></span></div>
+            <div class="gallery-grid" id="photoGallery">
+                <div class="gallery-item polaroid" data-src="IMG-20260404-WA0137.jpg"><img src="IMG-20260404-WA0137.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="IMG-20260420-WA0005.jpg"><img src="IMG-20260420-WA0005.jpg" alt=""></div>
+                <div class="gallery-item" data-src="20260403_180556.jpg"><img src="20260403_180556.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="IMG-20260307-WA0110.jpg"><img src="IMG-20260307-WA0110.jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG-20260307-WA0121(1).jpg"><img src="IMG-20260307-WA0121(1).jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="IMG-20260307-WA0119.jpg"><img src="IMG-20260307-WA0119.jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG-20260226-WA0076.jpg"><img src="IMG-20260226-WA0076.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="VID-20260302-WA0089.jpg"><img src="VID-20260302-WA0089.jpg" alt=""></div>
+                <div class="gallery-item" data-src="Snapchat-1873762705.jpg"><img src="Snapchat-1873762705.jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG-20260220-WA0037.jpg"><img src="IMG-20260220-WA0037.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="2026-02-22-185038975.jpg"><img src="2026-02-22-185038975.jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG-20260208-WA0169_1771131421943 (1).jpg"><img src="IMG-20260208-WA0169_1771131421943 (1).jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG-20260208-WA0165.jpg"><img src="IMG-20260208-WA0165.jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG-20260208-WA0023.jpg"><img src="IMG-20260208-WA0023.jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG-20260208-WA0080.jpg"><img src="IMG-20260208-WA0080.jpg" alt=""></div>
+                <div class="gallery-item" data-src="IMG_20260116_111337_103.jpg"><img src="IMG_20260116_111337_103.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="IMG-20260114-WA0000.jpg"><img src="IMG-20260114-WA0000.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="20260114_152919.jpg"><img src="20260114_152919.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="Snapchat-796764107.jpg"><img src="Snapchat-796764107.jpg" alt=""></div>
+                <div class="gallery-item polaroid" data-src="SmartSelect_20251122_074109_Studio.jpg"><img src="SmartSelect_20251122_074109_Studio.jpg" alt=""></div>
+            </div>
+            <div class="love-letter">
+                <p class="letter-text">My Love,<br><br>On this beautiful day — <strong>2083/01/18 B.S.</strong> — RW aaja hjr <strong> 20s</strong>,At very first well come to 20s, and Mero first thanks to mummy because aaja ko din uha le dhari pain sahayrw auta cute little princess lai birth dinu vayo rw jaab teo cute princess mero life ma aaunu vayo she make my life complete, So very very thank u so much mummy and  thank u  also for making my life complete. Sence we meet Hjr mero lai yaakdam special hunuxa rw life-long everday, everysingle minutes, every second hjr mero lai special huxa. <strong>U r the most special gift God  have ever gave me and I Love U So much more than any thing. 🤗❤️ 😘</strong> <br>Now u r in the 20s of your life rw life ko yo stage dari ramro huxa. U will get to see world freely, u will get know new differnet this about life and world. Yo life ko yeto time period ho jasma U will fly in a open sky without any one's help. U will power u control your life at your own hjr ko life ko remote hjr sagai huxa hjr le jasare chahanu hunxa tesari nai aano life banuna sknu huxa but u know the grate power comes with the grate responsibility rw hjr saga ta aafno sagai daddy,mummy,nanu ko responsibility xa rw ta hjr saga sadai hune xu. Holding your hands in each and moment of our life.<br>Hjr le aahele naya journe start garnu viraxa U r bulding your career U r going to be the MBBS.Dr. In this and in every journy of our life i will be there to support U, help U ane we will face every problems togther by holding each other hand for life-long <br <em>And Iam Proude to be called as Dr.Sugarik Sapkota Pokharel's Husband. It will be very proud moment for me.</em> Sanu u r the healer — of hearts, of souls, and most certainly of mine. I feel very lucky to have U in my life.<br><br>Every heartbeat of mine whispers your name. Our love is as infinite as the stars, as steady as a heartbeat that never fades. Thank U for every laugh, every tear, every wonderful memory we've created.<br><br>Happy 20th Birthday, Mero Baacha. 🤗💉❤️🩺🤗😘</p>
+                <p class="letter-signature">—Iam always yours my sanu, with all my heart ♡♡ and nobody can steal me from U♡♡</p>
+            </div>
+            <p class="bottom-glow-line">✨ U are my everything and iam all yours. ✨</p>
+        </div>
+    </div>
+
+    <!-- SCREEN 4: VIDEOS -->
+    <div class="screen" id="screen4-videos">
+        <div class="screen-inner">
+            <h2 class="screen-heading">🎥 Our Moving Memories</h2>
+            <div class="medical-divider"><span class="divider-line"></span><i class="fa-solid fa-video"></i><span class="divider-line"></span></div>
+            <div class="gallery-grid" id="videoGallery">
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="2026-04-05-103738893.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="VID-20260404-WA0070.mp4" type="video/mp4">
+                    </video>
+                </div>
+              
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="2026-03-14-200830039.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="2026-03-08-080610107.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="VID-20260302-WA0096.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="VID-20260302-WA0093.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="VID-20260302-WA0097.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="VID-20260302-WA0095.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="2026-02-26-175945092.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="Snapchat-796764107.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="Snapchat-469520253.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="Snapchat-360410111.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="gallery-item" style="background:#000;">
+                    <video controls width="100%" height="100%" style="object-fit:cover;" poster="poster.jpg">
+                        <source src="Snapchat-1162810910.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <p style="text-align:center; font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--medium-text); margin-top:1rem;"><i class="fa-solid fa-heart"></i> Every frame, is our heartbeat <i class="fa-solid fa-heart"></i></p>
+        </div>
+    </div>
+
+    <!-- SCREEN 5: HEARTBEATS -->
+    <div class="screen" id="screen5-heartbeat">
+        <div class="screen-inner">
+            <div class="ecg-container-screen2">
+                <svg class="ecg-line" viewBox="0 0 300 60">
+                    <polyline class="ecg-path ecg-draw-line" points="0,30 20,30 30,30 35,8 40,52 45,30 55,30 65,30 70,12 75,48 80,30 300,30" />
+                </svg>
+            </div>
+            <h2 class="screen-heading">💓 Heartbeats of Pure Love</h2>
+            <div class="medical-divider"><span class="divider-line"></span><i class="fa-solid fa-heart-pulse"></i><span class="divider-line"></span></div>
+            <div class="heartbeat-section">
+                <div class="heartbeat-icon" id="liveHeartIcon">❤️</div>
+                <p style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--dark);">Every beat is a whisper of my love for U my baby</p>
+                <div class="heartbeat-counter" id="heartbeatCounter">15,768,000</div>
+                <p style="color:var(--medium-text);">heartbeats since U came into this world<br><span style="font-size:0.85rem;">(and my heart beats only for U)</span></p>
+                <div style="margin-top:1rem; font-size:0.9rem; color:var(--light-text);"><i class="fa-solid fa-stethoscope"></i> Beating at <strong id="bpmDisplay">72</strong> BPM — just like a healthy, love-filled heart</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 6: PRESCRIPTION -->
+    <div class="screen" id="screen6-prescription">
+        <div class="screen-inner">
+            <h2 class="screen-heading"><i class="fa-solid fa-prescription"></i> Prescription for Love</h2>
+            <div class="medical-divider"><span class="divider-line"></span><i class="fa-solid fa-caduceus"></i><span class="divider-line"></span></div>
+            <div class="rx-paper">
+                <div class="rx-header"><span class="rx-symbol">℞</span><span style="font-size:0.7rem; text-transform:uppercase; letter-spacing:2px;">Love & Cardiology Dept.</span></div>
+                <hr style="border:1px dashed var(--champagne); margin:0.5rem 0;">
+                <p><strong>Patient:</strong> My Heart❤️</p>
+                <p><strong>Diagnosis:</strong> Madly, deeply, eternally in love with U.</p>
+                <p><strong>Prescribed:</strong> Unlimited kisses😘, warm hugs🤗, keep your temporal bone in my pectoral region❤️ and a forever together.</p>
+                <p><strong>Refill:</strong> <span style="background:var(--crimson); color:white; padding:0.2rem 0.8rem; border-radius:2rem;">FOREVER ♾️</span></p>
+                <p style="font-style:italic; text-align:right; margin-top:1rem;">— Dr.Sugarika Sapkota Pokharel❤️</p>
+            </div>
+            <p class="bottom-glow-line" style="margin-top:2rem;">No side effects. Only Love and Happiness. 💕</p>
+        </div>
+    </div>
+
+    <button class="back-button" id="backButton"><i class="fa-solid fa-heart"></i></button>
+    <button class="heart-nav-btn" id="heartNavBtn"><i class="fa-solid fa-chevron-down"></i></button>
+
+    <!-- Cute Music Toggle Button with Heart -->
+    <button class="audio-toggle muted" id="audioToggle" title="Music: Off">
+        <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-volume-xmark"></i>
+    </button>
+
+    <audio id="bgMusic" loop preload="none">
+        <source src="Sugarika Twenty.mp3" type="audio/mpeg">
+    </audio>
+    <div class="lightbox-overlay" id="lightboxOverlay"><span class="lightbox-close">&times;</span><img src="" id="lightboxImg"></div>
+
+    <script>
+        (function() {
+            const screen1 = document.getElementById('screen1');
+            const screen2Cake = document.getElementById('screen2-cake');
+            const screen3Photos = document.getElementById('screen3-photos');
+            const screen4Videos = document.getElementById('screen4-videos');
+            const screen5Heartbeat = document.getElementById('screen5-heartbeat');
+            const screen6Prescription = document.getElementById('screen6-prescription');
+            const heartButton = document.getElementById('heartButton');
+            const backButton = document.getElementById('backButton');
+            const heartNavBtn = document.getElementById('heartNavBtn');
+            const floatingContainer = document.getElementById('floating-hearts');
+            const audioToggle = document.getElementById('audioToggle');
+            const bgMusic = document.getElementById('bgMusic');
+            const lightboxOverlay = document.getElementById('lightboxOverlay');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.querySelector('.lightbox-close');
+
+            const pageScreens = [screen2Cake, screen3Photos, screen4Videos, screen5Heartbeat, screen6Prescription];
+            let currentPageIndex = 0;
+
+            // ---- MUSIC CONTROL ----
+            let audioPlaying = false;  // reflects whether music should be playing (not muted)
+            let musicPausedByVideo = false;
+            let activeVideoCount = 0;
+
+            function updateMusicIcon() {
+                const heartIcon = audioToggle.querySelector('.fa-heart');
+                const secondIcon = audioToggle.querySelector('.fa-volume-xmark, .fa-music');
+                if (audioPlaying) {
+                    audioToggle.classList.remove('muted');
+                    heartIcon.classList.add('beating');
+                    if (secondIcon) {
+                        secondIcon.classList.remove('fa-volume-xmark');
+                        secondIcon.classList.add('fa-music');
+                    }
+                    audioToggle.title = 'Music: On';
+                } else {
+                    audioToggle.classList.add('muted');
+                    heartIcon.classList.remove('beating');
+                    if (secondIcon) {
+                        secondIcon.classList.remove('fa-music');
+                        secondIcon.classList.add('fa-volume-xmark');
+                    }
+                    audioToggle.title = 'Music: Off';
+                }
+            }
+
+            audioToggle.addEventListener('click', () => {
+                if (audioPlaying) {
+                    // turn off
+                    bgMusic.pause();
+                    audioPlaying = false;
+                    musicPausedByVideo = false;
+                } else {
+                    // turn on
+                    bgMusic.volume = 0.35;
+                    bgMusic.play().then(() => {
+                        audioPlaying = true;
+                        musicPausedByVideo = false;
+                        updateMusicIcon();
+                    }).catch(() => {});
+                }
+                updateMusicIcon();
+            });
+
+            // Initial icon update (muted by default)
+            updateMusicIcon();
+
+            // ---- VIDEO EVENT LISTENERS (pause music when video plays) ----
+            function attachVideoListeners() {
+                document.querySelectorAll('#videoGallery video').forEach(video => {
+                    video.addEventListener('play', function() {
+                        activeVideoCount++;
+                        if (audioPlaying && !bgMusic.paused) {
+                            bgMusic.pause();
+                            musicPausedByVideo = true;
+                        }
+                    });
+                    video.addEventListener('pause', function() {
+                        activeVideoCount--;
+                        if (activeVideoCount === 0 && musicPausedByVideo && audioPlaying) {
+                            bgMusic.play().then(() => {
+                                musicPausedByVideo = false;
+                            }).catch(() => {});
+                        }
+                    });
+                    video.addEventListener('ended', function() {
+                        activeVideoCount--;
+                        if (activeVideoCount === 0 && musicPausedByVideo && audioPlaying) {
+                            bgMusic.play().then(() => {
+                                musicPausedByVideo = false;
+                            }).catch(() => {});
+                        }
+                    });
+                });
+            }
+            // Run after DOM ready
+            attachVideoListeners();
+
+            // ---- CAKE CUTTING ----
+            const knife = document.getElementById('knife');
+            const cakeMessage = document.getElementById('cakeMessage');
+            const slicePiece = document.getElementById('slicePiece');
+            const cutLine = document.getElementById('cutLine');
+            const flames = document.querySelectorAll('#screen2-cake .flame');
+            const cakeContainer = document.getElementById('cakeContainer');
+            let cakeCut = false;
+
+            function addCakeSparkles() {
+                for (let i = 0; i < 15; i++) {
+                    const sprinkle = document.createElement('div');
+                    sprinkle.className = 'sprinkle';
+                    sprinkle.style.left = Math.random() * 90 + '%';
+                    sprinkle.style.top = Math.random() * 40 + '%';
+                    sprinkle.style.animationDelay = Math.random() * 2 + 's';
+                    cakeContainer.appendChild(sprinkle);
+                }
+                for (let i = 0; i < 6; i++) {
+                    const star = document.createElement('i');
+                    star.className = 'fa-solid fa-star sparkle-star';
+                    star.style.left = Math.random() * 85 + '%';
+                    star.style.top = Math.random() * 50 + '%';
+                    star.style.animationDelay = Math.random() * 2 + 's';
+                    cakeContainer.appendChild(star);
+                }
+            }
+
+            const observerCake = new MutationObserver(() => {
+                if (screen2Cake.classList.contains('visible')) {
+                    addCakeSparkles();
+                }
+            });
+            observerCake.observe(screen2Cake, { attributes: true, attributeFilter: ['class'] });
+
+            knife.addEventListener('click', () => {
+                if (cakeCut) return;
+                cakeCut = true;
+                flames.forEach(f => f.classList.add('out'));
+                cakeMessage.textContent = '🎉 Happy Birthday, Doctor! 🎂';
+                knife.classList.add('cut');
+                setTimeout(() => {
+                    cutLine.classList.add('visible');
+                    slicePiece.classList.add('show');
+                    confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 }, colors: ['#ff0a54','#ff7096','#ffd700','#fff'] });
+                }, 800);
+                knife.addEventListener('animationend', () => {
+                    knife.classList.remove('cut');
+                    knife.classList.add('done');
+                }, { once: true });
+            });
+
+            // ---- FLOATING HEARTS ----
+            function createFloatHeart() {
+                const heart = document.createElement('i');
+                heart.className = 'fa-solid fa-heart float-heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 8 + 10) + 's';
+                heart.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                floatingContainer.appendChild(heart);
+                setTimeout(() => { if(heart.parentNode) heart.remove(); }, 20000);
+            }
+            for(let i=0;i<18;i++) createFloatHeart();
+            setInterval(createFloatHeart, 1200);
+
+            // ---- SCREEN 1 TO CAKE TRANSITION ----
+            function fireSpiralConfetti(originX, originY) {
+                const heartShape = confetti.shapeFromPath({
+                    path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
+                    matrix: [0.8,0,0,0.8,0,0]
+                });
+                const crossShape = confetti.shapeFromText({ text: '✚', scalar: 2.5 });
+                const cx = originX / window.innerWidth, cy = originY / window.innerHeight;
+                for(let i=0;i<7;i++){
+                    setTimeout(()=>{
+                        const angle = (i/7)*Math.PI*2;
+                        confetti({
+                            particleCount:80+i*30, spread:60+i*10, startVelocity:35+i*8,
+                            origin:{x:cx+Math.cos(angle)*0.08, y:cy+Math.sin(angle)*0.08},
+                            shapes:[heartShape,'circle','star'],
+                            colors:['#e91e63','#f06292','#ffd700','#f8bbd0','#fff'],
+                            scalar:1.8, ticks:180, gravity:0.6, decay:0.92, drift:Math.cos(angle)*2
+                        });
+                    }, i*200);
+                }
+                setTimeout(()=>{
+                    confetti({ particleCount:250, spread:360, startVelocity:55, origin:{x:cx,y:cy},
+                        shapes:[heartShape,'circle','star',crossShape],
+                        colors:['#e91e63','#f06292','#ffd700','#fff'], scalar:2.2, ticks:200, gravity:0.7, decay:0.91 });
+                },400);
+            }
+
+            heartButton.addEventListener('click', ()=>{
+                if(screen1.classList.contains('hidden')) return;
+                const rect = heartButton.getBoundingClientRect();
+                fireSpiralConfetti(rect.left+rect.width/2, rect.top+rect.height/2);
+                setTimeout(()=>{
+                    screen1.classList.add('hidden');
+                    goToPage(0);
+                    backButton.classList.add('visible');
+                },1600);
+            });
+
+            function hideAllPages(){ pageScreens.forEach(s=>s.classList.remove('visible')); }
+            function goToPage(index){
+                hideAllPages();
+                pageScreens[index].classList.add('visible');
+                pageScreens[index].scrollTop = 0;
+                currentPageIndex = index;
+                updateNavButton();
+            }
+            function updateNavButton(){
+                const anyVisible = pageScreens.some(s=>s.classList.contains('visible'));
+                if(anyVisible){
+                    heartNavBtn.classList.add('visible');
+                    heartNavBtn.innerHTML = currentPageIndex === pageScreens.length-1 ?
+                        '<i class="fa-solid fa-rotate-right"></i>' : '<i class="fa-solid fa-chevron-down"></i>';
+                } else {
+                    heartNavBtn.classList.remove('visible');
+                }
+            }
+
+            heartNavBtn.addEventListener('click', ()=>{
+                if(screen1.classList.contains('hidden')){
+                    currentPageIndex = currentPageIndex === pageScreens.length-1 ? 0 : currentPageIndex + 1;
+                    goToPage(currentPageIndex);
+                }
+            });
+
+            backButton.addEventListener('click', ()=>{
+                hideAllPages();
+                heartNavBtn.classList.remove('visible');
+                backButton.classList.remove('visible');
+                screen1.classList.remove('hidden');
+            });
+
+            // ---- LIVE HEARTBEAT (Screen 5) ----
+            const heartbeatCounter = document.getElementById('heartbeatCounter');
+            let beatCount = 15768000;
+            const bpm = 72;
+            const beatInterval = 60000 / bpm;
+            let heartTimer;
+            function updateBeatDisplay(){ heartbeatCounter.textContent = beatCount.toLocaleString(); }
+            function startHeartbeat(){
+                if(heartTimer) clearInterval(heartTimer);
+                updateBeatDisplay();
+                heartTimer = setInterval(()=>{ beatCount++; updateBeatDisplay(); }, beatInterval);
+            }
+            function stopHeartbeat(){ if(heartTimer) clearInterval(heartTimer); }
+            const observerHeart = new MutationObserver(()=>{
+                if(screen5Heartbeat.classList.contains('visible')) startHeartbeat();
+                else stopHeartbeat();
+            });
+            observerHeart.observe(screen5Heartbeat, { attributes: true, attributeFilter: ['class'] });
+
+            // ---- LIGHTBOX ----
+            function openLightbox(src) { lightboxImg.src = src; lightboxOverlay.classList.add('active'); }
+            document.querySelectorAll('#photoGallery .gallery-item[data-src]').forEach(item=>{
+                item.addEventListener('click', ()=> openLightbox(item.getAttribute('data-src')));
+            });
+            document.querySelectorAll('#videoGallery .video-placeholder').forEach(item=>{
+                item.addEventListener('click', ()=>{
+                    const poster = item.querySelector('.video-poster');
+                    if(poster && poster.src) openLightbox(poster.src);
+                });
+            });
+            lightboxClose.addEventListener('click', ()=> lightboxOverlay.classList.remove('active'));
+            lightboxOverlay.addEventListener('click', e=>{ if(e.target===lightboxOverlay) lightboxOverlay.classList.remove('active'); });
+            document.addEventListener('keydown', e=>{ if(e.key==='Escape') lightboxOverlay.classList.remove('active'); });
+
+            // ---- INIT ----
+            screen1.classList.remove('hidden');
+            hideAllPages();
+            backButton.classList.remove('visible');
+            heartNavBtn.classList.remove('visible');
+        })();
+    </script>
+</body>
+</html>
